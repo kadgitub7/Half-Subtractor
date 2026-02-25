@@ -48,7 +48,7 @@ D = A - B
 with outputs:
 
 - **Difference \(D\)**: the lower‑order bit of the result.
-- **Borrow‑out \(B<sub>o</sub>)**: indicates whether a borrow is needed from the next higher bit.$$
+- **Borrow‑out \(B<sub>o</sub>)**: indicates whether a borrow is needed from the next higher bit.
 
 From the truth table (shown below), we obtain the minimized Boolean expressions:
 
