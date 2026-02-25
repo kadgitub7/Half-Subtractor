@@ -48,17 +48,17 @@ D = A - B
 with outputs:
 
 - **Difference \(D\)**: the lower‑order bit of the result.
-- **Borrow‑out \(B\_o\)**: indicates whether a borrow is needed from the next higher bit.
+- $$**Borrow‑out \(B\_o\)**: indicates whether a borrow is needed from the next higher bit.$$
 
 From the truth table (shown below), we obtain the minimized Boolean expressions:
 
 - \(D = A'B + AB' = A \oplus B\)
-- \(B\_o = A'B\)
+- $$\(B\_o = A'B\)$$
 
 where:
 
 - \(A'\) denotes NOT A.
-- \(A \oplus B\) is the XOR of A and B.
+- $$\(A \oplus B\) is the XOR of A and B.$$
 
 In this project, the Verilog module `halfSubtractor` realizes these equations using basic logic gates or continuous assignments.
 
@@ -92,7 +92,7 @@ The half subtractor has two inputs A, B and two outputs D, B<sub>o</sub>. The tr
 This is the **final truth table** of the 1‑bit half subtractor. It directly reflects the rules of single‑bit binary subtraction:
 
 - When \(A = B\), the difference D is 0 and no borrow is needed.
-- When \(A \ne B\), the difference D is 1; a borrow occurs only when \(A = 0, B = 1\).
+- $$When \(A \ne B\), the difference D is 1; a borrow occurs only when \(A = 0, B = 1\).$$
 
 ---
 
@@ -112,11 +112,11 @@ We treat A as the row variable and B as the column variable, in Gray code order 
 From the K‑map, D is 1 whenever **A and B differ**. Grouping the 1s gives:
 
 - \(D = A'B + AB'\)
-- \(D = A \oplus B\)
+- $$\(D = A \oplus B\)$$
 
-### Borrow Output \(B\_o\) K-Map
+### $$Borrow Output \(B\_o\) K-Map$$
 
-**K-map for \(B\_o\):**
+$$**K-map for \(B\_o\):**$$
 
 | **A \\ B** | **0** | **1** |
 |:----------:|:-----:|:-----:|
@@ -125,7 +125,7 @@ From the K‑map, D is 1 whenever **A and B differ**. Grouping the 1s gives:
 
 There is a single 1 cell at \(A = 0, B = 1\), giving:
 
-- \(B\_o = A'B\)
+- $$\(B\_o = A'B\)$$
 
 These minimized equations are exactly what the `halfSubtractor` module implements.
 
@@ -136,18 +136,18 @@ These minimized equations are exactly what the `halfSubtractor` module implement
 The half subtractor can be implemented using a small set of logic gates:
 
 - **Difference \(D\)**: realized as an XOR between A and B.
-- **Borrow‑out \(B\_o\)**: realized as an AND gate with A inverted and B as inputs.
+- $$**Borrow‑out \(B\_o\)**: realized as an AND gate with A inverted and B as inputs.$$
 
 Conceptually:
 
 1. Invert A to produce \(A'\).
-2. AND \(A'\) with B to produce the borrow‑out \(B\_o\).
+2. $$AND \(A'\) with B to produce the borrow‑out \(B\_o\).$$
 3. XOR A and B to produce the difference D.
 
 In Verilog, this can be written using **continuous assignments** (e.g., `assign`) or explicit gate instantiations. A typical port mapping is:
 
 - Inputs: `A`, `B`
-- Outputs: `D`, `Bo` (used in code to represent \(B\_o\))
+- $$Outputs: `D`, `Bo` (used in code to represent \(B\_o\))$$
 
 ---
 
@@ -156,7 +156,7 @@ In Verilog, this can be written using **continuous assignments** (e.g., `assign`
 This section corresponds to the **logic diagram** of the half subtractor, showing:
 
 - An XOR gate producing D from A and B.
-- An inverter on A feeding an AND gate with B, producing \(B\_o\).
+- $$An inverter on A feeding an AND gate with B, producing \(B\_o\).$$
 
 ![Half Subtractor Circuit](imageAssets/halfSubtractorCircuit.png)
 
