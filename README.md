@@ -12,7 +12,7 @@ A Verilog implementation of a **1‑bit half subtractor**, developed using the V
 - [Truth Table](#truth-table)
 - [K-Maps and Boolean Derivations](#k-maps-and-boolean-derivations)
   - [Difference Output \(D\) K-Map](#difference-output-d-k-map)
-  - [Borrow Output \(B\_o\) K-Map](#borrow-output-bo-k-map)
+  - [Borrow Output \(B<sub>o</sub>\) K-Map](#borrow-output-bo-k-map)
 - [Half Subtractor Architecture](#half-subtractor-architecture)
 - [Circuit Diagram](#circuit-diagram)
 - [Waveform Diagram](#waveform-diagram)
@@ -48,17 +48,17 @@ D = A - B
 with outputs:
 
 - **Difference \(D\)**: the lower‑order bit of the result.
-- $$**Borrow‑out \(B\_o\)**: indicates whether a borrow is needed from the next higher bit.$$
+- **Borrow‑out \(B<sub>o</sub>)**: indicates whether a borrow is needed from the next higher bit.$$
 
 From the truth table (shown below), we obtain the minimized Boolean expressions:
 
-- \(D = A'B + AB' = A \oplus B\)
+- $$\(D = A'B + AB' = A \oplus B\)$$
 - $$\(B\_o = A'B\)$$
 
 where:
 
 - \(A'\) denotes NOT A.
-- $$\(A \oplus B\) is the XOR of A and B.$$
+- $$\(A \oplus B\)$$ is the XOR of A and B.
 
 In this project, the Verilog module `halfSubtractor` realizes these equations using basic logic gates or continuous assignments.
 
@@ -92,7 +92,7 @@ The half subtractor has two inputs A, B and two outputs D, B<sub>o</sub>. The tr
 This is the **final truth table** of the 1‑bit half subtractor. It directly reflects the rules of single‑bit binary subtraction:
 
 - When \(A = B\), the difference D is 0 and no borrow is needed.
-- $$When \(A \ne B\), the difference D is 1; a borrow occurs only when \(A = 0, B = 1\).$$
+- When $$\(A \ne B\)$$, the difference D is 1; a borrow occurs only when \(A = 0, B = 1\).
 
 ---
 
@@ -116,7 +116,7 @@ From the K‑map, D is 1 whenever **A and B differ**. Grouping the 1s gives:
 
 ### $$Borrow Output \(B\_o\) K-Map$$
 
-$$**K-map for \(B\_o\):**$$
+**K-map for \(B<sub>o</sub>):**
 
 | **A \\ B** | **0** | **1** |
 |:----------:|:-----:|:-----:|
@@ -136,18 +136,18 @@ These minimized equations are exactly what the `halfSubtractor` module implement
 The half subtractor can be implemented using a small set of logic gates:
 
 - **Difference \(D\)**: realized as an XOR between A and B.
-- $$**Borrow‑out \(B\_o\)**: realized as an AND gate with A inverted and B as inputs.$$
+- **Borrow‑out \(B<sub>o</sub>)**: realized as an AND gate with A inverted and B as inputs.
 
 Conceptually:
 
 1. Invert A to produce \(A'\).
-2. $$AND \(A'\) with B to produce the borrow‑out \(B\_o\).$$
+2. AND \(A'\) with B to produce the borrow‑out \(B<sub>o</sub>).
 3. XOR A and B to produce the difference D.
 
 In Verilog, this can be written using **continuous assignments** (e.g., `assign`) or explicit gate instantiations. A typical port mapping is:
 
 - Inputs: `A`, `B`
-- $$Outputs: `D`, `Bo` (used in code to represent \(B\_o\))$$
+- Outputs: `D`, `Bo` (used in code to represent \(B<sub>o</sub>))
 
 ---
 
@@ -156,7 +156,7 @@ In Verilog, this can be written using **continuous assignments** (e.g., `assign`
 This section corresponds to the **logic diagram** of the half subtractor, showing:
 
 - An XOR gate producing D from A and B.
-- $$An inverter on A feeding an AND gate with B, producing \(B\_o\).$$
+- An inverter on A feeding an AND gate with B, producing \(B<sub>o</sub>).
 
 ![Half Subtractor Circuit](imageAssets/halfSubtractorCircuit.png)
 
@@ -164,7 +164,7 @@ This section corresponds to the **logic diagram** of the half subtractor, showin
 
 ## Waveform Diagram
 
-The behavioral simulation waveform shows inputs A and B cycling through all four possible combinations, while outputs D and \(B\_o\) follow the expected subtraction results from the truth table.
+The behavioral simulation waveform shows inputs A and B cycling through all four possible combinations, while outputs D and \(B<sub>o</sub>) follow the expected subtraction results from the truth table.
 
 ![Half Subtractor Waveform](imageAssets/halfSubtractorWaveform.png)
 
@@ -242,7 +242,7 @@ If you want to map the design to a physical FPGA:
 1. In **Sources**, right‑click the top-level RTL module (e.g., `halfSubtractor.v`) → **Set as Top** (for synthesis/implementation).
 2. Run **Synthesis** from the Flow Navigator.
 3. Run **Implementation**.
-4. Create or edit a constraints file (e.g. `.xdc`) to assign pins for A, B, D, and \(B\_o\).
+4. Create or edit a constraints file (e.g. `.xdc`) to assign pins for A, B, D, and \(B<sub>o</sub>).
 5. Run **Generate Bitstream** to produce the configuration file for your FPGA board.
 
 ---
